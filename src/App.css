@@ -1,0 +1,75 @@
+.searchCard{
+  margin-left: 15%;
+  margin-right: 15%;
+}
+.search{
+  margin-left: 50%;
+  border-radius: 1px;
+  width: 30%;
+}
+
+.Title{
+  text-align: center;
+  font-weight: bold;
+  font-size: 11px;
+}
+
+.Year{
+  text-align: center;
+  font-size: 11px;
+  color: #888888;
+}
+.NameDetail{
+  width: 80%;
+  float: right;
+}
+.cover{
+  height: 151px;
+  width: 151px;
+  float: left;
+}
+.image{
+  width:18%;
+}
+.details{
+  display: flex;
+  flex-direction: column;
+  width: 82%;
+}
+.card{
+  padding: 3%;
+  margin-top: 3%
+}
+.rating{
+  margin-left: 3.5%;
+}
+.ratePad{
+  padding-right: 5%;
+  background-color: yellow;
+}
+.up{
+float: left;
+  width: 33%;
+  margin-left: 10%;
+  cursor: pointer;
+}
+.down{
+float: right;
+  width: 33%;
+  margin-right: 10%;
+  cursor: pointer;
+}
+.vote{
+  text-align: center;
+  width: 34%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+@media only screen and (max-width: 600px) {
+  .searchCard{
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+}
