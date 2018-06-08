@@ -5,6 +5,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Card from '@material-ui/core/Card';
 import Paper from '@material-ui/core/Paper';
 import {connect} from 'react-redux'
 import {
@@ -40,23 +42,31 @@ class GuttersGrid extends React.Component {
         const { classes, removeMovies, addedMovies } = this.props;
         return (
             <div>
-                <Grid container className={classes.root} justify="center" spacing={Number(40)}>
-                    {
-                        addedMovies !== null && addedMovies !== undefined && (
-                            addedMovies.map((movie) => (
-                                <Grid key={movie.Title} item>
-                                    <Paper className={classes.paper}>
-                                        <img className={classes.imageM}
-                                             src={movie.Poster}
-                                             alt={movie.Title}
-                                             onClick={() => removeMovies(movie)}
-                                        />
-                                    </Paper>
-                                </Grid>
-                            ))
-                        )
-                    }
-                </Grid>
+                <Typography variant="headline" style={{paddingTop:20}}>Watched</Typography>
+                { addedMovies.length > 0
+                    ?
+                    <Grid container className={classes.root} justify="center" spacing={Number(40)}>
+                        {
+                            addedMovies !== null && addedMovies !== undefined && (
+                                addedMovies.map((movie) => (
+                                    <Grid key={movie.Title} item>
+                                        <Paper className={classes.paper}>
+                                            <img className={classes.imageM}
+                                                 src={movie.Poster}
+                                                 alt={movie.Title}
+                                                 onClick={() => removeMovies(movie)}
+                                            />
+                                        </Paper>
+                                    </Grid>
+                                ))
+                            )
+                        }
+                    </Grid>
+                    :
+                    <Card className="card" style={{textAlign:'center'}}>
+                        <Typography variant="subheading">You haven't watched any movie</Typography>
+                    </Card>
+                }
             </div>
         );
     }

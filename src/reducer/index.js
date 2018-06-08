@@ -4,7 +4,6 @@
 import {
     ADD_MOVIE,
     REMOVE_MOVIE,
-    UPDATE_STATE,
     VOTE,
 } from '../action'
 

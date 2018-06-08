@@ -19,7 +19,7 @@ class Movie extends Component {
 
     state={
         movieName: '',
-        movieDetail: null
+        movieDetail: null,
     };
 
     searchMovie = (query) => {
@@ -39,7 +39,7 @@ class Movie extends Component {
 
     render() {
         const { movieDetail } = this.state;
-        const { addedMovies, } = this.props
+        const { addedMovies, } = this.props;
         return(
             <div className="searchCard">
                 <div >
@@ -48,10 +48,11 @@ class Movie extends Component {
                             <Typography variant="title" color="inherit">
                                 Novanet-Task
                             </Typography>
-                            <input className="search"
-                                   type="text"
+                            <input type="text"
+                                   placeholder="Search.."
                                    value={this.state.movieName}
                                    onChange={(e) => this.searchMovie(e.target.value)}
+                                   className="search"
                             />
                         </Toolbar>
                     </AppBar>
@@ -79,6 +80,22 @@ class Movie extends Component {
                                             <CardActions>
                                                 <Button size="small" color="primary">
                                                     IMDB {movieDetail.imdbRating}
+                                                </Button>
+                                                <Button size="small" color="default">
+                                                    {Object.values(movieDetail.Ratings) !== null &&(
+                                                        Object.values(movieDetail.Ratings).map((data)=>{
+                                                            return(
+                                                                <span key={data.Source}>
+                                                                    {
+                                                                        data.Source==="Rotten Tomatoes"
+                                                                            ? <span>RT{" "}{data.Value}</span>
+                                                                            : <span></span>
+                                                                    }
+                                                                </span>
+                                                            )
+                                                        })
+                                                    )
+                                                    }
                                                 </Button>
                                                 <Button size="large" color="secondary">
                                                     {addedMovies !== null && addedMovies !== undefined &&(
