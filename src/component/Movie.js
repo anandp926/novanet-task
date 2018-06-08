@@ -39,11 +39,21 @@ class Movie extends Component {
         this.props.addMovies(movie)
     };
 
-
-
     render() {
         const { movieDetail } = this.state;
         const { addedMovies, } = this.props;
+        let count = 0;
+        {movieDetail !== null && Object.keys(movieDetail).length > 2 && addedMovies !== null && addedMovies !== undefined && (
+            addedMovies.map((fm) => {
+                return(
+                    fm.Title === movieDetail.Title
+                        ? count++
+                        : count
+                )
+            })
+        )
+        }
+        console.log(count)
         return(
             <div className="searchCard">
                 <div >
@@ -103,22 +113,14 @@ class Movie extends Component {
                                                     )
                                                     }
                                                 </Button>
-                                                <Button size="large" color="secondary">
-                                                    {addedMovies !== null && addedMovies !== undefined && (
-                                                        addedMovies.map((fm) => {
-                                                            return (
-                                                                <span key={movieDetail.Title}>
-                                                                {
-                                                                    fm.Title === movieDetail.Title
-                                                                        ? <span style={{fontWeight:'bold'}}>watched</span>
-                                                                        : <span></span>
-                                                                }
-                                                            </span>
-                                                            )
-                                                        })
-                                                    )
-                                                    }
-                                                </Button>
+                                                {
+                                                    count>0
+                                                    ?
+                                                        <Button size="large" color="secondary">
+                                                            <span style={{fontWeight:'bold'}}>watched</span>
+                                                        </Button>
+                                                    : <span></span>
+                                                }
                                             </CardActions>
                                             <div className="rating">
                                                 <div className="desc">
