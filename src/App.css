@@ -25,6 +25,7 @@
   height: 151px;
   width: 151px;
   float: left;
+  cursor: pointer;
 }
 .image{
   width:18%;
@@ -47,21 +48,22 @@
 }
 .up{
 float: left;
-  width: 33%;
-  margin-left: 10%;
+  width: 20%;
+  margin-left: 5%;
   cursor: pointer;
 }
 .down{
 float: right;
-  width: 33%;
-  margin-right: 10%;
+  width: 20%;
+  margin-right: 5%;
   cursor: pointer;
 }
 .vote{
   text-align: center;
-  width: 34%;
-  margin-left: 10%;
-  margin-right: 10%;
+  font-size: 20px;
+  width: 60%;
+  margin-left: 15%;
+  margin-right: 15%;
 }
 
 input[type=text] {

@@ -23,14 +23,18 @@ function movies(state={addedMovies:[]}, action) {
                     ...state.addedMovies.filter(movies => movies.Title !== action.movie.Title)
                 ]
             };
-        case VOTE:
-            return {
-                addedMovies: [
-                    state.addedMovies.map(movie => {
-                        return action.title === movie.Title ? Object.assign({}, movie, { vote: action.vote } ) : movie;
+        case VOTE:{
+            return Object.assign({}, state, {
+                addedMovies : state.addedMovies.map(movie => {
+                    if (movie.Title !== action.title) {
+                        return movie;
+                    }
+                    return Object.assign({}, movie, {
+                        vote : action.vote
                     })
-                ]
-            }
+                })
+            });
+        }
         default:
             return{
                 ...state

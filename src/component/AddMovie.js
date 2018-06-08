@@ -11,7 +11,13 @@ import Paper from '@material-ui/core/Paper';
 import {connect} from 'react-redux'
 import {
     removeMovie,
+    vote
 } from '../action'
+import ArrowDropUp from 'material-ui/svg-icons/action/thumb-up'
+import ArrowDropDown from 'material-ui/svg-icons/action/thumb-down'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import {red500, greenA200} from 'material-ui/styles/colors';
+import Divider from '@material-ui/core/Divider';
 
 
 const styles = theme => ({
@@ -25,6 +31,7 @@ const styles = theme => ({
     imageM: {
         width: 120,
         height: 150,
+        cursor:'pointer'
     }
 });
 
@@ -39,10 +46,11 @@ class GuttersGrid extends React.Component {
     }
 
     render() {
-        const { classes, removeMovies, addedMovies } = this.props;
+        const { classes, removeMovies, addedMovies, vote } = this.props;
         return (
             <div>
                 <Typography variant="headline" style={{paddingTop:20}}>Watched</Typography>
+                <Divider/>
                 { addedMovies.length > 0
                     ?
                     <Grid container className={classes.root} justify="center" spacing={Number(40)}>
@@ -56,6 +64,21 @@ class GuttersGrid extends React.Component {
                                                  alt={movie.Title}
                                                  onClick={() => removeMovies(movie)}
                                             />
+                                            <MuiThemeProvider>
+                                                <span>
+                                                    <ArrowDropUp
+                                                        className="up"
+                                                        color={greenA200}
+                                                        onClick={() => vote({ title:movie.Title, vote:movie.vote+1})}
+                                                    />
+                                                    <span className="vote">{movie.vote}</span>
+                                                    <ArrowDropDown
+                                                        className="down"
+                                                        color={red500}
+                                                        onClick={() => vote({ title:movie.Title, vote:movie.vote-1})}
+                                                    />
+                                                </span>
+                                            </MuiThemeProvider>
                                         </Paper>
                                     </Grid>
                                 ))
@@ -85,6 +108,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return{
         removeMovies: (data) => dispatch(removeMovie(data)),
+        vote: (data) => dispatch(vote(data)),
     }
 }
 

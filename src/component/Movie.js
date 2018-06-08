@@ -15,6 +15,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import CardActions from '@material-ui/core/CardActions';
 
+
 class Movie extends Component {
 
     state={
@@ -34,8 +35,11 @@ class Movie extends Component {
     };
 
     movieAdded = (movie) => {
+        movie["vote"]=0
         this.props.addMovies(movie)
     };
+
+
 
     render() {
         const { movieDetail } = this.state;
@@ -88,7 +92,9 @@ class Movie extends Component {
                                                                 <span key={data.Source}>
                                                                     {
                                                                         data.Source==="Rotten Tomatoes"
-                                                                            ? <span>RT{" "}{data.Value}</span>
+                                                                            ? <span style={{color:'darkBlack'}}>
+                                                                                RT{" "}{data.Value}
+                                                                              </span>
                                                                             : <span></span>
                                                                     }
                                                                 </span>
@@ -98,13 +104,13 @@ class Movie extends Component {
                                                     }
                                                 </Button>
                                                 <Button size="large" color="secondary">
-                                                    {addedMovies !== null && addedMovies !== undefined &&(
+                                                    {addedMovies !== null && addedMovies !== undefined && (
                                                         addedMovies.map((fm) => {
-                                                            return(
+                                                            return (
                                                                 <span key={movieDetail.Title}>
                                                                 {
                                                                     fm.Title === movieDetail.Title
-                                                                        ? <span>Watched</span>
+                                                                        ? <span style={{fontWeight:'bold'}}>watched</span>
                                                                         : <span></span>
                                                                 }
                                                             </span>
@@ -116,8 +122,13 @@ class Movie extends Component {
                                             </CardActions>
                                             <div className="rating">
                                                 <div className="desc">
-                                                    <Typography variant="headline">Description</Typography>
-                                                    <Typography variant="subheading" color="textSecondary">{movieDetail.Plot}</Typography>
+                                                    <Typography variant="headline" style={{fontSize:17, fontWeight:'bold'}}>Description</Typography>
+                                                    <Typography variant="subheading"
+                                                                style={{fontSize:13, color:'#37373a'}}
+                                                                color="textSecondary"
+                                                    >
+                                                        <span >{movieDetail.Plot}</span>
+                                                    </Typography>
                                                 </div>
                                             </div>
                                         </div>
