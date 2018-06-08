@@ -35,7 +35,7 @@ const styles = theme => ({
     }
 });
 
-class GuttersGrid extends React.Component {
+class AddMovie extends React.Component {
 
     static propTypes = {
         removeMovie: PropTypes.func.isRequired
@@ -95,7 +95,7 @@ class GuttersGrid extends React.Component {
     }
 }
 
-GuttersGrid.propTypes = {
+AddMovie.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -112,4 +112,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(GuttersGrid));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(AddMovie));
